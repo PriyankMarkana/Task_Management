@@ -73,8 +73,8 @@ function Home() {
     }
     else {
       if (taskdate.getMinutes() < todayDate.getMinutes()) {
-        hour = taskdate.getHours() - 1 - todayDate.getHours();
-        minute = taskdate.getMinutes() + 60 - todayDate.getMinutes();
+        hour = (taskdate.getHours() - 1) - todayDate.getHours();
+        minute = (taskdate.getMinutes() + 60) - todayDate.getMinutes();
       }
       else {
         minute = taskdate.getMinutes() - todayDate.getMinutes();
