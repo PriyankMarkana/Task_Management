@@ -34,11 +34,22 @@ function Home() {
       }
     }
     else {
-      dispatch(editTask({ title, description, date, id }));
-      setToggle(true);
-       setTitle("");
-        setDescription("");
-        setDate("");
+
+      dateCal();
+      if (date == "" || title == "" || description == "") {
+        alert("Please fill all the fields");
+      }
+      else if (date == "change") {
+        alert("Start time needs to be earlier than the end time");
+      }
+      else
+      {
+        dispatch(editTask({ title, description, date, id }));
+        setToggle(true);
+         setTitle("");
+          setDescription("");
+          setDate("");
+      }
     }
    
   }
