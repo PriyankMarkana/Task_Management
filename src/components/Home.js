@@ -53,7 +53,7 @@ function Home() {
 
     day = Math.floor(miliSecond / (1000 * 60 * 60 * 24));
 
-    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day>=0 || taskdate.getFullYear() < todayDate.getFullYear()) {
+    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day<=0 ) {
       date = "change";
     }
     else {
