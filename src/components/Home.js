@@ -28,15 +28,19 @@ function Home() {
       }
       else {
         dispatch(addTask({ title, description, date, check: false, priority: false, day, hour, minute }));
+        setTitle("");
+        setDescription("");
+        setDate("");
       }
     }
     else {
       dispatch(editTask({ title, description, date, id }));
       setToggle(true);
+      setTitle("");
+      setDescription("");
+      setDate("");
     }
-    setTitle("");
-    setDescription("");
-    setDate("");
+   
   }
   const edit = (index) => {
     setToggle(false);
@@ -53,7 +57,7 @@ function Home() {
 
     day = Math.floor(miliSecond / (1000 * 60 * 60 * 24));
 
-    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day<=0 ) {
+    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day<0 ||(taskdate.getMinutes() - todayDate.getMinutes())<0 ) {
       date = "change";
     }
     else {
