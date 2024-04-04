@@ -34,13 +34,23 @@ function Home() {
       }
     }
     else {
-      dispatch(editTask({ title, description, date, id }));
-      setToggle(true);
-      setTitle("");
-      setDescription("");
-      setDate("");
+
+      dateCal();
+      if (date == "" || title == "" || description == "") {
+        alert("Please fill all the fields");
+      }
+      else if (date == "change") {
+        alert("Start time needs to be earlier than the end time");
+      }
+      else {
+        dispatch(editTask({ title, description, date, id }));
+        setToggle(true);
+        setTitle("");
+        setDescription("");
+        setDate("");
+      }
     }
-   
+
   }
   const edit = (index) => {
     setToggle(false);
@@ -57,7 +67,7 @@ function Home() {
 
     day = Math.floor(miliSecond / (1000 * 60 * 60 * 24));
 
-    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day<0 ||(taskdate.getMinutes() - todayDate.getMinutes())<0 ) {
+    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day < 0 || (taskdate.getMinutes() - todayDate.getMinutes()) < 0) {
       date = "change";
     }
     else {
@@ -120,7 +130,7 @@ function Home() {
                       </thead>
                       <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                         {
-                          taskData.map((item, index) => {
+                          taskData && taskData.map((item, index) => {
                             return (
                               <tr key={index}>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">{item.title}</td>

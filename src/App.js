@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { getTask } from './App/taskSlice';
 import { useDispatch } from 'react-redux';
 function App() {
-
   useEffect(() => {
     if (localStorage.getItem('task') === null) {
       localStorage.setItem('task', JSON.stringify([]))
