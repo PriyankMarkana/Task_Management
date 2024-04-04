@@ -39,7 +39,7 @@ function UserView() {
                   </thead>
                   <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                     {
-                       tempData && tempData.map((item, index) => {
+                      tempData.map((item, index) => {
                         return (
                           <tr key={index}>
                             <td><input type='checkbox' checked={item.check} onClick={() => dispatch(statusTask({ index }))}></input></td>
