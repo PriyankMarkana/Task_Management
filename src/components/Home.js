@@ -68,7 +68,7 @@ function Home() {
     }
   }
   return (
-    <>
+    <div className='bg-gray-900' style={{ height: "100vh" }}>
       <section className="text-gray-400 bg-gray-900 body-font relative">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-3">
@@ -142,7 +142,7 @@ function Home() {
         </div>
       </section>
 
-    </>
+    </div>
   )
 }
 
