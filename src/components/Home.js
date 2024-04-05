@@ -68,22 +68,26 @@ function Home() {
     let taskdate = new Date(date);
     let miliSecond = taskdate - todayDate;
 
-    day = miliSecond / (1000 * 60 * 60 * 24);
-    if (day > 0) {
-      day = Math.floor(day);
-    }
-    else {
-      day = Math.round(day);
-    }
+    day = Math.ceil(miliSecond / (1000 * 60 * 60 * 24));
 
-    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day < 0 || (taskdate.getMinutes() - todayDate.getMinutes()) < 0) {
+
+    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day < 0) {
       date = "change";
     }
     else {
 
-      minute = taskdate.getMinutes() - todayDate.getMinutes();
-      hour = taskdate.getHours() - todayDate.getHours();
-
+      if (taskdate.getMinutes() < todayDate.getMinutes()) {
+        hour = taskdate.getHours() - 1 - todayDate.getHours();
+        minute = taskdate.getMinutes() + 60 - todayDate.getMinutes();
+        if(hour==-1)
+        {
+          hour=0;
+        }
+      }
+      else {
+        minute = taskdate.getMinutes() - todayDate.getMinutes();
+        hour = taskdate.getHours() - todayDate.getHours();
+      }
     }
   }
   return (
