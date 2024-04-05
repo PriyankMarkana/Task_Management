@@ -33,9 +33,11 @@ export const taskSlice = createSlice({
       state.taskData[action.payload.id].title = action.payload.title;
       state.taskData[action.payload.id].description = action.payload.description;
       state.taskData[action.payload.id].date = action.payload.date;
+      state.taskData[action.payload.id].minute = action.payload.minute;
+      state.taskData[action.payload.id].day = action.payload.day;
+      state.taskData[action.payload.id].hour = action.payload.hour;
       state.tempData = state.taskData;
       localStorage.setItem('task', JSON.stringify(state.taskData))
-
 
     },
     statusTask: (state, action) => {

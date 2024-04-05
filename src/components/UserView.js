@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { statusTask, completeTask, inprogessTask, allTask, dateCal, priorityTask } from '../App/taskSlice';
+import { statusTask, completeTask, inprogessTask, allTask, priorityTask } from '../App/taskSlice';
 import { Link } from 'react-router-dom';
 function UserView() {
 

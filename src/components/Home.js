@@ -20,15 +20,15 @@ function Home() {
   const add = () => {
     if (toggle) {
       dateCal();
-      if (date == "" || title == "" || description == "") {
+      if (date === "" || title === "" || description === "") {
         alert("Please fill all the fields");
       }
-      else if (date == "change") {
+      else if (date === "change") {
         alert("Start time needs to be earlier than the end time");
       }
       else {
         dispatch(addTask({ title, description, date, check: false, priority: false, day, hour, minute }));
-         setTitle("");
+        setTitle("");
         setDescription("");
         setDate("");
       }
@@ -36,29 +36,31 @@ function Home() {
     else {
 
       dateCal();
-      if (date == "" || title == "" || description == "") {
+      if (date === "" || title === "" || description === "") {
         alert("Please fill all the fields");
       }
-      else if (date == "change") {
+      else if (date === "change") {
         alert("Start time needs to be earlier than the end time");
       }
-      else
-      {
-        dispatch(editTask({ title, description, date, id }));
+      else {
+        dispatch(editTask({ title, description, date, day, hour, minute, id }));
         setToggle(true);
-         setTitle("");
-          setDescription("");
-          setDate("");
+        setTitle("");
+        setDescription("");
+        setDate("");
       }
     }
-   
+
   }
   const edit = (index) => {
+    console.log(taskData);
+    let temp;
     setToggle(false);
     setId(index);
     setTitle(taskData[index].title);
     setDescription(taskData[index].description);
-    setDate(taskData[index].date);
+    temp = taskData[index].date;
+    setDate(temp);
   }
 
   const dateCal = () => {
@@ -66,20 +68,22 @@ function Home() {
     let taskdate = new Date(date);
     let miliSecond = taskdate - todayDate;
 
-    day = Math.floor(miliSecond / (1000 * 60 * 60 * 24));
+    day = miliSecond / (1000 * 60 * 60 * 24);
+    if (day > 0) {
+      day = Math.floor(day);
+    }
+    else {
+      day = Math.round(day);
+    }
 
-    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day<0 ) {
+    if ((taskdate.getHours() - todayDate.getHours()) < 0 || day < 0 || (taskdate.getMinutes() - todayDate.getMinutes()) < 0) {
       date = "change";
     }
     else {
-      if (taskdate.getMinutes() < todayDate.getMinutes()) {
-        hour = (taskdate.getHours() - 1) - todayDate.getHours();
-        minute = (taskdate.getMinutes() + 60) - todayDate.getMinutes();
-      }
-      else {
-        minute = taskdate.getMinutes() - todayDate.getMinutes();
-        hour = taskdate.getHours() - todayDate.getHours();
-      }
+
+      minute = taskdate.getMinutes() - todayDate.getMinutes();
+      hour = taskdate.getHours() - todayDate.getHours();
+
     }
   }
   return (
