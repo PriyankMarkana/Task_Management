@@ -81,8 +81,9 @@ function Home() {
     }
     if (hour < 0) {
       hour = 24 + hour;
+      day=day-1;
     }
-    if(day<0)
+    if((day<0))
     {
       date="change";
     }
